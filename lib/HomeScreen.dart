@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: SalomonBottomBar(
         currentIndex: _currentIndex,
         onTap: (index) {
-          print(index);
+          //print(index);
           setState(() {
             _currentIndex = index;
           });

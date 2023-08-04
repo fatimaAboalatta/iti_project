@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:project_iti/models/usermodel.dart';
 
 class register extends StatelessWidget {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+  var nameController = TextEditingController();
+  var numberController = TextEditingController();
 
   register({super.key});
 
@@ -37,6 +41,26 @@ class register extends StatelessWidget {
                   height: 40.0,
                 ),
                 TextFormField(
+                  controller: nameController,
+                  keyboardType: TextInputType.name,
+                  onFieldSubmitted: (String value) {
+                    print(value);
+                  },
+                  onChanged: (String value) {
+                    print(value);
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'الأسم',
+                    prefixIcon: Icon(
+                      Icons.person,
+                    ),
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                TextFormField(
                   controller: emailController,
                   keyboardType: TextInputType.emailAddress,
                   onFieldSubmitted: (String value) {
@@ -49,6 +73,26 @@ class register extends StatelessWidget {
                     labelText: 'البريد الألكتروني',
                     prefixIcon: Icon(
                       Icons.email,
+                    ),
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                TextFormField(
+                  controller: numberController,
+                  keyboardType: TextInputType.number,
+                  onFieldSubmitted: (String value) {
+                    print(value);
+                  },
+                  onChanged: (String value) {
+                    print(value);
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'رقم الهاتف',
+                    prefixIcon: Icon(
+                      Icons.call,
                     ),
                     border: OutlineInputBorder(),
                   ),
@@ -92,9 +136,18 @@ class register extends StatelessWidget {
                           .createUserWithEmailAndPassword(
                           email: emailController.text.trim(),
                           password: passwordController.text.trim(),)
-                          .then((value) {
-                        print(value.user!.email);
-                        print(value.user!.uid);
+                          .then((value) async {
+                        final docUser =
+                        FirebaseFirestore.instance.collection("users").doc();
+                        final user =UserModel
+                          (id:value.user!.uid,
+                          name:nameController.text,
+                          number: numberController.text,
+                          emile:value.user!.email,
+                        );
+                        final json = user.toJson();
+                        await docUser.set(json);
+                        //فوفو اعملي هنا انه تم التسجيل بنجاخ وارجع لتسجيل الدخول
                       }).catchError((error) {
                         print(error.toString());
                       });
