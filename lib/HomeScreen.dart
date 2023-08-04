@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_iti/Onboarding_Screen/login.dart';
 import 'package:project_iti/navbar/about.dart';
 import 'package:project_iti/navbar/category.dart';
 import 'package:project_iti/navbar/home.dart';
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(titels[_currentIndex]),
         actions: <Widget>[
           IconButton(
-            icon: const Icon( Icons.favorite_border),
+            icon: const Icon(Icons.favorite_border),
             tooltip: 'اسماء المطورين',
             onPressed: () {
               Navigator.push(
@@ -54,19 +55,15 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.logout),
             tooltip: 'تسجيل خروج',
-            onPressed: () {
-              FirebaseAuth.instance.signOut();
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                  Login()), (Route<dynamic> route) => false);
             },
           ),
-
-
         ],
         leading: Image.asset('assets/images/b4.png'),
       ),
-
-
-
-
       body: screens[_currentIndex],
       bottomNavigationBar: SalomonBottomBar(
         currentIndex: _currentIndex,

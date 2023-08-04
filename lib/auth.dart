@@ -9,7 +9,7 @@ Widget build (BuildContext context) {
     body: StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(), builder: ((context, snapshot) {
       if (snapshot.hasData) {
-        return HomeScreen();
+        return HomeScreen() ;
       } else {
       return Login();
       }

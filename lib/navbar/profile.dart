@@ -38,11 +38,76 @@ class _profileState extends State<profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Text(user.email!),
-         Text(userModel.name!),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Container(
+          padding:EdgeInsets.symmetric(vertical: 30, horizontal: 30) ,
+          height:330.0,
+          margin: EdgeInsets.only(top: 80,right: 10,left:10,),
+          decoration:
+          BoxDecoration(
+            color:Colors.white,
+            border: Border.all(color:Colors.white, width: 2),
+            borderRadius: BorderRadius.circular(40),
+            boxShadow: [
+              new BoxShadow(color: Colors.black12, offset: new Offset(5.0, 7.0),),
+            ],
+          ),
+          child: Column(
+            children: [
+
+              Text("معلومات حسابي ",style:TextStyle(
+                fontSize:40.0,
+                fontWeight: FontWeight.bold,
+                color:Color(0xFF009B62),
+              ),),
+              SizedBox(height: 10,),
+              Row(
+                children: [
+                  Icon(
+                    Icons.person,
+                    color:Color(0xFF009B62),
+                    size: 30.0,
+                  ),
+                  SizedBox(width: 20,),
+                  Text(userModel.name??"",style:TextStyle(
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                  ),),
+],
+              ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.email,
+                    color:Color(0xFF009B62),
+                    size: 30.0,
+                  ),
+                  SizedBox(width: 20,),
+                  Text( user.email!,style:TextStyle(
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                  ),),
+],
+              ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.call,
+                    color:Color(0xFF009B62),
+                    size: 30.0,
+                  ),
+                  SizedBox(width: 20,),
+                  Text(userModel.number??"",style:TextStyle(
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                  ),),
+],
+              ),
+
+            ],
+          ),
+        ),
       ),
     );
   }
