@@ -57,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
             tooltip: 'تسجيل خروج',
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
+
               Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
                   Login()), (Route<dynamic> route) => false);
             },
