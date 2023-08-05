@@ -151,12 +151,12 @@ class _LoginState extends State<Login> {
                             print(value.user!.email);
                             print(value.user!.uid);
                             print("Login success");
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomeScreen(),
-                              ), // MaterialPageRoute
-                            );
+                         //   Navigator.push(
+                          //    context,
+                          //    MaterialPageRoute(
+                            //  builder: (context) => HomeScreen(),
+                          //    ), // MaterialPageRoute
+                         //   );
                           }).catchError((error) {
                             print(error.toString());
                           });

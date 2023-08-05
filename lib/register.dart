@@ -20,7 +20,7 @@ class register extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF009B62),
-        leading:IconButton( icon:Icon(Icons.arrow_back_rounded), onPressed: () { Navigator.pop(context); },),
+     //   leading:IconButton( icon:Icon(Icons.arrow_back_rounded), onPressed: () { Navigator.pop(context); },),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
